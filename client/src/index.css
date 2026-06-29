@@ -1,0 +1,66 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #f8fafc;
+  color: #1e293b;
+  line-height: 1.6;
+}
+
+a { color: inherit; text-decoration: none; }
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.875rem;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  transition: opacity 0.15s;
+}
+button:hover { opacity: 0.85; }
+button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.btn-primary   { background: #3b82f6; color: #fff; }
+.btn-danger    { background: #ef4444; color: #fff; }
+.btn-secondary { background: #e2e8f0; color: #1e293b; }
+
+input, select, textarea {
+  font-family: inherit;
+  font-size: 0.875rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  padding: 0.5rem 0.75rem;
+  width: 100%;
+  outline: none;
+  background: #fff;
+}
+input:focus, select:focus, textarea:focus { border-color: #3b82f6; box-shadow: 0 0 0 2px #bfdbfe; }
+
+.card {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 1.25rem;
+}
+
+.page { max-width: 900px; margin: 2rem auto; padding: 0 1rem; }
+
+.form-group { display: flex; flex-direction: column; gap: 0.25rem; margin-bottom: 1rem; }
+.form-group label { font-size: 0.8rem; font-weight: 600; color: #475569; }
+
+.error-msg { color: #dc2626; font-size: 0.85rem; margin-top: 0.5rem; }
+
+.status-badge {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+.status-Applied              { background: #dbeafe; color: #1e40af; }
+.status-Interview-Scheduled  { background: #fef3c7; color: #92400e; }
+.status-Interview-Completed  { background: #fed7aa; color: #9a3412; }
+.status-Offer-Received       { background: #dcfce7; color: #166534; }
+.status-Rejected             { background: #fee2e2; color: #991b1b; }
+.status-Withdrawn            { background: #f1f5f9; color: #64748b; }
