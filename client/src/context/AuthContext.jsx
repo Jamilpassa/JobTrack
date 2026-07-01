@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from 'react';
-
+const API = import.meta.env.VITE_API_URL || '';
 const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {
@@ -8,14 +8,14 @@ export function AuthProvider({ children }) {
 
   // On first load, ask the server if we have a valid cookie session
   useEffect(() => {
-    fetch('/api/auth/me', { credentials: 'include' })
+    fetch('${API}/api/auth/me', { credentials: 'include' })
       .then(r => r.ok ? r.json() : null)
       .then(data => { if (data) setUser(data.user); })
       .finally(() => setLoading(false));
   }, []);
 
   async function login(email, password) {
-    const res = await fetch('/api/auth/login', {
+    const res = await fetch('${API}/api/auth/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       credentials: 'include',
@@ -27,7 +27,7 @@ export function AuthProvider({ children }) {
   }
 
   async function register(name, email, password) {
-    const res = await fetch('/api/auth/register', {
+    const res = await fetch('${API}/api/auth/register', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       credentials: 'include',
@@ -39,7 +39,7 @@ export function AuthProvider({ children }) {
   }
 
   async function logout() {
-    await fetch('/api/auth/logout', { method: 'POST', credentials: 'include' });
+    await fetch('${API}/api/auth/logout', { method: 'POST', credentials: 'include' });
     setUser(null);
   }
 
