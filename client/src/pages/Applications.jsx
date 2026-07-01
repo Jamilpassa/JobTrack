@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-const API = import.meta.env.VITE_API_URL || '';
+
 const STATUSES = [
   'Applied', 'Interview Scheduled', 'Interview Completed',
   'Offer Received', 'Rejected', 'Withdrawn'
@@ -24,7 +24,7 @@ export default function Applications() {
     const params = new URLSearchParams();
     if (filterStatus) params.set('status', filterStatus);
     if (sortBy) params.set('sort', sortBy);
-    fetch(`${API}/api/applications?${params}`, { credentials: 'include' })
+    fetch(`/api/applications?${params}`, { credentials: 'include' })
       .then(r => r.json())
       .then(data => setApps(Array.isArray(data) ? data : []))
       .catch(() => setError('Could not load applications'));
@@ -53,7 +53,7 @@ export default function Applications() {
     e.preventDefault();
     setError('');
     const method = editingId ? 'PUT' : 'POST';
-    const url    = editingId ? `${API}/api/applications/${editingId}` : '/api/applications';
+    const url    = editingId ? `/api/applications/${editingId}` : '/api/applications';
     try {
       const res  = await fetch(url, {
         method, credentials: 'include',
@@ -77,7 +77,7 @@ export default function Applications() {
   async function handleDelete(id) {
     if (!confirm('Delete this application?')) return;
     try {
-      await fetch(`${API}/api/applications/${id}`, { method: 'DELETE', credentials: 'include' });
+      await fetch(`/api/applications/${id}`, { method: 'DELETE', credentials: 'include' });
       setApps(prev => prev.filter(a => a.id !== id));
     } catch {
       setError('Could not delete application');
